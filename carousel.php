@@ -14,11 +14,11 @@
         width: 70%;
         margin: auto;
     }
-   /* 
+    /* 
     #myCarousel {
       position: absolute; top: 0; left: 0; height: 100%; width: 100%;
     }
-*/
+    */
     </style>
 </head>
 <body>
@@ -27,7 +27,7 @@
     $config_json = utf8_encode($config_json);
     $json_array = json_decode($config_json, true);
     ?>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="<?php echo $json_array['interval_ms'];?>">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="<?php echo $json_array['interval_ms'];?>">
         <!-- Indicators -->
         <ol class="carousel-indicators">
 
