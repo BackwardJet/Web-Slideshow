@@ -22,7 +22,12 @@
     </style>
 </head>
 <body>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <?php
+    $config_json = file_get_contents("config.json");
+    $config_json = utf8_encode($config_json);
+    $json_array = json_decode($config_json, true);
+    ?>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="<?php echo $json_array['interval_ms'];?>">
         <!-- Indicators -->
         <ol class="carousel-indicators">
 
