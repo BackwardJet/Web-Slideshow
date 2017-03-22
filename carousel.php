@@ -25,41 +25,45 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
             <?php
                 
             $dir = "images/";
 
-            $files = scandir($dir); 
+            $files = array_filter(scandir($dir), function($item) {
+                global $dir;
+                return !is_dir($dir . $item);
+            });
+            
+            $files = array_values($files);
+
             $num_files = count($files);
-            $first = true;
+            for($i = 0; $i < $num_files; $i++)
+            {
+                if ($i == 0) {
+                    echo '<li data-target="#myCarousel" data-slide-to="0" class="active"></li>' . "\n";
+                }
+                else {
+                    echo "<li data-target=\"#myCarousel\" data-slide-to=\"$i\"></li>\n";
+                }
+            }
+                echo '
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">' . "\n";
             for($i = 0; $i < $num_files; $i++)
             {
                 $file = $files[$i];
-                if(is_file($dir.$file)) {
-                    if ($first) {
-                        ?>
-                        <div class="item active">
-                        <?php
-                        $first = false;
-                    }
-                    else {
-                        ?>
-                        <div class="item">
-                        <?php
-                    }
-                        ?>
-                    <img src="<?php echo "$dir$file";?>" alt="slide<?php echo "$i";?>" width=100% height=100%>
-                    </div>
-                <?php
+                if ($i == 0) {
+                    echo '<div class="item active">' . "\n";
                 }
-            } ?>
+                else {
+                    echo '<div class="item">' . "\n";
+                }
+                echo "<img src=\"$dir$file\" alt=\"slide$i\" width=100% height=100%>\n";
+                echo '</div>' . "\n";
+            } 
+            ?>
         </div>
 
         <!-- Left and right controls -->
