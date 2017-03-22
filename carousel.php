@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Web Slideshow</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,15 +10,10 @@
 
     <style>
     .carousel-inner > .item > img,
+    
     .carousel-inner > .item > a > img {
-        width: 70%;
         margin: auto;
     }
-    /* 
-    #myCarousel {
-      position: absolute; top: 0; left: 0; height: 100%; width: 100%;
-    }
-    */
     </style>
 </head>
 <body>
