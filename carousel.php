@@ -28,7 +28,7 @@
 
             <?php
                 
-            $dir = "images/";
+            $dir = "uploads/";
 
             $files = array_filter(scandir($dir), function($item) {
                 global $dir;
