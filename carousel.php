@@ -1,3 +1,8 @@
+<?php
+    $config_json = file_get_contents("config.json");
+    $config_json = utf8_encode($config_json);
+    $jsonArray = json_decode($config_json, true);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +18,8 @@
         loadCarousel();
     });
     
-    var myInterval = setInterval(function(){ loadCarousel() }, 4300); // load the carousel every 4.3 seconds so it doesn't overlap with the interval
-
+    var nextSlideInterval = setInterval(function(){ loadCarousel() }, <?php echo $jsonArray['interval_ms'];?> ); // load the carousel every interval and update the slide
+ 
     function loadCarousel() { // the function will load the contents of the php files to the relevant div's
         $('#carousel-indicators').load('indicators.php');
         $('#carousel-inner').load('carousel-images.php');
@@ -23,12 +28,7 @@
 </head>
 <body>
 
-    <?php
-    $config_json = file_get_contents("config.json");
-    $config_json = utf8_encode($config_json);
-    $json_array = json_decode($config_json, true);
-    ?>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="<?php echo $json_array['interval_ms'];?>">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-pause="false" data-interval="0">
 
         <!-- Indicators -->
         <ol class="carousel-indicators" id="carousel-indicators">

@@ -1,0 +1,2 @@
+class = item active ->  class = item active left    -> class = item
+class = item        ->  class = next left           -> class = item active
